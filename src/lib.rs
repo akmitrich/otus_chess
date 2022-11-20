@@ -121,7 +121,7 @@ pub fn popcnt2(number: u64) -> u8 {
 }
 
 pub fn cache_bits(number: u64) -> u8 {
-    const CACHE: [u8;256] = [
+    const CACHE: [u8; 256] = [
         0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4,
         4, 5, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5,
         4, 5, 5, 6, 1, 2, 2, 3, 2, 3, 3, 4, 2, 3, 3, 4, 3, 4, 4, 5, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4,
@@ -131,11 +131,10 @@ pub fn cache_bits(number: u64) -> u8 {
         4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 2, 3, 3, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 5, 5, 6, 3, 4,
         4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7, 3, 4, 4, 5, 4, 5, 5, 6, 4, 5, 5, 6, 5, 6, 6, 7,
         4, 5, 5, 6, 5, 6, 6, 7, 5, 6, 6, 7, 6, 7, 7, 8,
-    ];
+    ]; // CACHE[x] = number of 1s in byte x
     let mask = number.to_be_bytes();
-    mask.iter().fold(0, |sum, current| {
-        sum + CACHE.get((*current) as usize).unwrap()
-    })
+    mask.iter()
+        .fold(0, |sum, current| sum + CACHE[*current as usize])
 }
 
 #[cfg(test)]

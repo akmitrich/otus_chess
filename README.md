@@ -13,3 +13,7 @@
 
 ## Задача о числе единичных битов в 64-разрядном числе
 В файле lib.rs реализованы 4 функции:
+- fn _popcnt0(number: u64) -> u8
+- fn _popcnt1(number: u64) -> u8
+- fn popcnt2(number: u64) -> u8
+- fn cache_bits(number: u64) -> u8
